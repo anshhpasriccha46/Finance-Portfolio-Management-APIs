@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Rest api for a stock market web page",
   "main": "server.js",
-   "type": "module", 
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -11,6 +11,7 @@
   "author": "Anshh Pasriccha",
   "license": "ISC",
   "dependencies": {
+    "mongoose": "^8.19.1",
     "stock-nse-india": "^1.2.2"
   }
 }
