@@ -1,7 +1,7 @@
 import express from "express";
-import { createUserAndStock } from "../models/updateDB.js";
+import { addNewUser } from "../Controller/addNewUser.js";
 
 const inputRouter = express.Router();
-inputRouter.post("/input" , createUserAndStock);
+inputRouter.post("/newUser" , addNewUser);
 
 export default inputRouter;

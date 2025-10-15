@@ -3,13 +3,14 @@ import user from './user.js';
 export const createUserAndStock = async function(req, res) { // The handler always receives (req, res)
    try {
        // 1. Get data from the request *body*
-       const { name, email, portfolio } = req.body;
+       const { name, email,password , portfolio } = req.body;
 
   
 
        const newUser = new user({
            name: name,
            email: email,
+           password: password,
            portfolio: portfolio || [] 
        });
 

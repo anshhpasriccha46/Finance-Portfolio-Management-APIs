@@ -1,38 +1,48 @@
 import mongoose from 'mongoose';
-
-// 1. IMPORT YOUR USER MODEL (Adjust the path if necessary)
 import user from './models/user.js';
 
-// 2. SET YOUR DATABASE CONNECTION STRING
 const MONGO_URI = 'mongodb://127.0.0.1:27017/database_name';
 
-// 3. MAIN FUNCTION TO CONNECT, FETCH, AND PRINT DATA
+// This function now *only* fetches data
 async function fetchAllUsers() {
+    console.log("--- All Users in the Database (Before Deletion) ---");
+    const allUsers = await user.find({});
+
+    if (allUsers.length === 0) {
+        console.log("🟡 No users found in the database.");
+    } else {
+        console.log(JSON.stringify(allUsers, null, 2));
+    }
+}
+
+// This function now *only* deletes data
+async function deleteAllData() {
+    console.log("🟡 Deleting all users...");
+    const result = await user.deleteMany({});
+    console.log(`✅ Success! Deleted ${result.deletedCount} user(s).`);
+}
+
+// A main function to control the connection and the order of operations
+async function main() {
     try {
-        // Connect to the database
+        // 1. Connect ONCE
         await mongoose.connect(MONGO_URI);
         console.log("✅ Successfully connected to MongoDB.");
 
-        // Fetch all documents from the 'users' collection
-        const allUsers = await user.find({});
+        // 2. Run the first function and WAIT for it to finish
+        await fetchAllUsers();
 
-        // Check if any users were found
-        if (allUsers.length === 0) {
-            console.log("🟡 No users found in the database.");
-        } else {
-            console.log("--- All Users in the Database ---");
-            // Print the data in a readable JSON format
-            console.log(JSON.stringify(allUsers, null, 2));
-        }
+        // 3. Now, run the second function
+        await deleteAllData();
 
     } catch (error) {
-        console.error("❌ Error connecting to or fetching from database:", error.message);
+        console.error("❌ An error occurred:", error.message);
     } finally {
-        // Disconnect from the database after the operation is complete
+        // 4. Disconnect ONCE at the very end
         await mongoose.disconnect();
         console.log("🔌 Disconnected from MongoDB.");
     }
 }
 
-// Run the function
-fetchAllUsers();
+// Run the main controller function
+main();
