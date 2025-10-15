@@ -1,11 +1,12 @@
 import express from "express";
 import { NseIndia } from "stock-nse-india";
+import { checkUser } from "../middlewares/auth.js";
 
 const outputRouter = express.Router();
 const nseIndia = new NseIndia();
 
 // GET stock details by symbol
-outputRouter.get("/stocks/:symbol", async (req, res) => {
+outputRouter.get("/stocks/:symbol", checkUser, async (req, res) => {
   try {
     const symbol = req.params.symbol.toUpperCase();
     const data = await nseIndia.getEquityDetails(symbol);

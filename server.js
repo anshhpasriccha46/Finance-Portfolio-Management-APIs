@@ -2,10 +2,12 @@ import express from "express";
 import inputRouter from "./routes/input.js";
 import outputRouter from "./routes/output.js";
 import connectDB from "./config/db.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const port = 4600;
 
+app.use(cookieParser());
 
 // Middleware (so app can read JSON body)
 app.use(express.json());
