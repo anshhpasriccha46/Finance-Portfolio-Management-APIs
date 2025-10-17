@@ -1,27 +1,15 @@
 import express from "express";
-import { NseIndia } from "stock-nse-india";
+
 import { checkUser } from "../middlewares/auth.js";
+import { getLivePrice } from "../Controller/getLivePrice.js";
+import { profitOrLoss } from "../Controller/calculateProfitorLoss.js";
 
 const outputRouter = express.Router();
-const nseIndia = new NseIndia();
+
 
 // GET stock details by symbol
-outputRouter.get("/stocks/:symbol", checkUser, async (req, res) => {
-  try {
-    const symbol = req.params.symbol.toUpperCase();
-    const data = await nseIndia.getEquityDetails(symbol);
+outputRouter.get("/stocks/:symbol", checkUser, getLivePrice);
 
-    res.json({
-      symbol: symbol,
-      company: data.info.companyName,
-      lastPrice: data.priceInfo.lastPrice,
-      dayHigh: data.priceInfo.intraDayHighLow.max,
-      dayLow: data.priceInfo.intraDayHighLow.min,
-    //   totalTradedVolume: data.securityWiseDP.totalTradedVolume
-    });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+outputRouter.get("/calculateProfitOrLoss" , checkUser , profitOrLoss);
 
 export default outputRouter;

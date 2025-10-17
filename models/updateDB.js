@@ -33,7 +33,7 @@ export const createUserAndStock = async function(req, res) { // The handler alwa
    } catch (error) {
        console.error("❌ Error creating user:", error.message);
 
-       res.status(500).json({ message: "An internal server error occurred." });
+       res.status(500).json({ message: "User already exists!!!" });
    }
 };
 
