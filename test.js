@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import user from './models/user.js';
 
-const MONGO_URI = 'mongodb://127.0.0.1:27017/database_name';
+const MONGO_URI = 'mongodb+srv://anshhpasriccha46:kbe5Yllrnwt7n1ll@cluster0.4ivejh0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 // This function now *only* fetches data
 async function fetchAllUsers() {
