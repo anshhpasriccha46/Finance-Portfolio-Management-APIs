@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
     "mongoose": "^8.19.1",
     "stock-nse-india": "^1.2.2",
     "uuid": "^13.0.0"
