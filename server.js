@@ -5,7 +5,7 @@ import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
-const port = 4600;
+const port = process.env.PORT || 4600;
 
 app.use(cookieParser());
 
