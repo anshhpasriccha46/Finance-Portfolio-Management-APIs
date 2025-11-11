@@ -1,8 +1,8 @@
 import express from "express";
 
 import { checkUser } from "../middlewares/auth.js";
-import { getLivePrice } from "../Controller/getLivePrice.js";
-import { profitOrLoss } from "../Controller/calculateProfitorLoss.js";
+import { getLivePrice } from "../controller/getLivePrice.js";
+import { profitOrLoss } from "../controller/calculateProfitorLoss.js";
 
 const outputRouter = express.Router();
 

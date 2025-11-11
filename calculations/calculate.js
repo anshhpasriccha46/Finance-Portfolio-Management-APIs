@@ -1,4 +1,4 @@
-import { getLivePrice , fetchLivePriceData } from "../Controller/getLivePrice.js";
+import { getLivePrice , fetchLivePriceData } from "../controller/getLivePrice.js";
 
 export const calculateProfitOrLoss = async function(stock){
 
