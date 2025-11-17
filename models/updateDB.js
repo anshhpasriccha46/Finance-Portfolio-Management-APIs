@@ -5,7 +5,7 @@ import { setUser } from '../service/map.js';
 export const createUserAndStock = async function(req, res) { // The handler always receives (req, res)
    try {
        // 1. Get data from the request *body*
-       const { name, email,password , portfolio } = req.body;
+       const { name, email,password , portfolio , Age , RiskScore , InvestmentHorizon , FinancialGoal , FinancialCondition , AnnualIncome , TotalNetWorth , Dependents , InvestmentKnowledge } = req.body;
 
   
 
@@ -13,7 +13,17 @@ export const createUserAndStock = async function(req, res) { // The handler alwa
            name: name,
            email: email,
            password: password,
-           portfolio: portfolio || [] 
+           portfolio: portfolio || [] ,
+           Age: Age,
+           RiskScore: RiskScore,
+           InvestmentHorizon: InvestmentHorizon,
+           FinancialGoal: FinancialGoal,
+           FinancialCondition: FinancialCondition,
+           AnnualIncome: AnnualIncome,
+           TotalNetWorth: TotalNetWorth,
+           Dependents: Dependents,
+           InvestmentKnowledge: InvestmentKnowledge
+
        });
 
        const savedUser = await newUser.save();
