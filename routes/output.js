@@ -22,7 +22,7 @@ outputRouter.get('/predict', checkUser ,async (req, res) => {
         return res.status(404).json({ message: "User not found." });
     }
     console.log("User data for prediction:", user);
-    console.log("JSON SENT TO PYTHON API:", jsonDataToSend);
+  
 
     const jsonDataToSend ={
     "Age": user.Age,
@@ -35,7 +35,7 @@ outputRouter.get('/predict', checkUser ,async (req, res) => {
     "Dependents": user.Dependents,
     "InvestmentKnowledge": user.InvestmentKnowledge
 };
-
+  console.log("JSON SENT TO PYTHON API:", jsonDataToSend);
     // 2. The external API endpoint you want to send data TO
     const externalApiUrl = 'http://Aritro1905.pythonanywhere.com/recommend';
 
