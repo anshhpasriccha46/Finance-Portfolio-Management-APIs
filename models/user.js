@@ -35,7 +35,35 @@ const userSchema = new mongoose.Schema({
 
     price: { 
         type: Number, required: true }
-    }]
+    }],
+    Age: {
+        type: Number
+    },
+    RiskScore: {
+        type: Number
+        
+    },
+    InvestmentHorizon: {
+        type: Number
+    },
+    FinancialGoal: {
+        type: Number
+    },
+    FinancialCondition: {
+        type: Number
+    },
+    AnnualIncome: {
+        type: Number
+    },
+    TotalNetWorth: {
+        type: Number
+    },
+    Dependents: {
+        type: Number
+    },
+    InvestmentKnowledge: {
+        type: Number
+    }
 });
 
 const user = mongoose.model('user', userSchema);

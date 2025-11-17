@@ -4,6 +4,7 @@ import axios from "axios";
 import { checkUser } from "../middlewares/auth.js";
 import { getLivePrice } from "../controller/getLivePrice.js";
 import { profitOrLoss } from "../controller/calculateProfitorLoss.js";
+import { getUser } from "../service/map.js";
 
 const outputRouter = express.Router();
 
@@ -13,19 +14,23 @@ outputRouter.get("/stocks/:symbol", checkUser, getLivePrice);
 
 outputRouter.get("/calculateProfitOrLoss" , checkUser , profitOrLoss);
 
-outputRouter.get('/predict', async (req, res) => {
+outputRouter.get('/predict', checkUser ,async (req, res) => {
   try {
     // 1. This is the JavaScript object you want to send as JSON
+    const user = getUser(req.cookies?.uid);
+    if (!user) {
+        return res.status(404).json({ message: "User not found." });
+    }
     const jsonDataToSend ={
-    "Age": 45,
-    "RiskScore": 8,
-    "InvestmentHorizon": 25,
-    "FinancialGoal": 1,
-    "FinancialCondition": 2,
-    "AnnualIncome": 120000,
-    "TotalNetWorth": 2500000,
-    "Dependents": 1,
-    "InvestmentKnowledge": 2
+    "Age": user.Age,
+    "RiskScore": user.RiskScore,
+    "InvestmentHorizon": user.InvestmentHorizon,
+    "FinancialGoal": user.FinancialGoal,
+    "FinancialCondition": user.FinancialCondition,
+    "AnnualIncome": user.AnnualIncome,
+    "TotalNetWorth": user.TotalNetWorth,
+    "Dependents": user.Dependents,
+    "InvestmentKnowledge": user.InvestmentKnowledge
 };
 
     // 2. The external API endpoint you want to send data TO
