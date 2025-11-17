@@ -21,6 +21,9 @@ outputRouter.get('/predict', checkUser ,async (req, res) => {
     if (!user) {
         return res.status(404).json({ message: "User not found." });
     }
+    console.log("User data for prediction:", user);
+    console.log("JSON SENT TO PYTHON API:", jsonDataToSend);
+
     const jsonDataToSend ={
     "Age": user.Age,
     "RiskScore": user.RiskScore,
